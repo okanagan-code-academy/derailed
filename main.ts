@@ -87,9 +87,10 @@ let railTypeList: Image[][] = [
     [assets.tile`horizontalRail`],
     [assets.tile`verticalRail`],
     [assets.tile`rightRail`, assets.tile`rightRailAlternate`],
+    [assets.tile`downRail`, assets.tile`downRailAlternate`],
     [assets.tile`leftRail`, assets.tile`leftRailAlternate`],
     [assets.tile`upRail`, assets.tile`upRailAlternate`],
-    [assets.tile`downRail`, assets.tile`downRailAlternate`],
+    
 ]
 
 function selectLevel() {
@@ -104,260 +105,120 @@ function selectLevel() {
 function createPlayerAnimation() {
     characterAnimations.loopFrames(
         playerSprite, [
-        img`
-        . . . . f f f f . . . . . 
-        . . f f c c c c f f . . . 
-        . f f c c c c c c f f . . 
-        f f c c c c c c c c f f . 
-        f f c c f c c c c c c f . 
-        f f f f f c c c f c c f . 
-        f f f f c c c f c c f f . 
-        f f f f f f f f f f f f . 
-        f f f f f f f f f f f f . 
-        . f f f f f f f f f f . . 
-        . f f f f f f f f f f . . 
-        f e f f f f f f f f e f . 
-        e 4 f 7 7 7 7 7 7 c 4 e . 
-        e e f 6 6 6 6 6 6 f e e . 
-        . . . f f f f f f . . . . 
-        . . . f f . . f f . . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . . f f f f . . . . 
-        . . . f f c c c c f f . . 
-        . f f f c c c c c c f f . 
-        f f c c c c c c c c c f f 
-        f c c c c f c c c c c c f 
-        . f f f f c c c c f c c f 
-        . f f f f c c f c c c f f 
-        . f f f f f f f f f f f f 
-        . f f f f f f f f f f f f 
-        . . f f f f f f f f f f . 
-        . . e f f f f f f f f f . 
-        . . e f f f f f f f f e f 
-        . . 4 c 7 7 7 7 7 e 4 4 e 
-        . . e f f f f f f f e e . 
-        . . . f f f . . . . . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . . f f f f . . . . 
-        . . . f f c c c c f f . . 
-        . . f f c c c c c c f f . 
-        . f f f c c c c c c c f f 
-        f f f c c c c c c c c c f 
-        f f c c c f c c c c c c f 
-        . f f f f f c c c f c f f 
-        . f f f f c c f f c f f f 
-        . . f f f f f f f f f f f 
-        . . f f f f f f f f f f . 
-        . . f f f f f f f f f e . 
-        . f e f f f f f f f f e . 
-        . e 4 4 e 7 7 7 7 7 c 4 . 
-        . . e e f f f f f f f e . 
-        . . . . . . . . f f f . . 
-        `],
+            img`
+                . . . . . . . . . . . . . . . .
+                . 5 . . . . . . . . . . . . 5 .
+                c d c . . . c c c c . . . c d c
+                c d c . . c b 2 2 b c . . c d c
+                c d c . c b 2 2 2 2 b c . c d c
+                c d c c b b d d d d b b c c d c
+                c d b c b d d d d d d b c b d c
+                c d b c b d d d d d d b c b d c
+                c c c c b d d d d d d b c c c c
+                . . . c b d d d d d d b c . . .
+                . . . . c b d d d d b c . . . .
+                . . . . . c b b b b c . . . . .
+                . . . . . . c c c c . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+            `,
+        ],
         100,
         characterAnimations.rule(Predicate.MovingUp, Predicate.FacingUp)
     )
     characterAnimations.loopFrames(
         playerSprite, [
-        img`
-        . . . . . . . . . . . . . 
-        . . . f f f f f f . . . . 
-        . f f f f f f f f f . . . 
-        . f f f f f f c f f f . . 
-        f f f f c f f f c f f f . 
-        f c f f c c f f f c c f f 
-        f c c f f f f e f f f f f 
-        f f f f f f f e e f f f . 
-        f f e e f b f e e f f f . 
-        f f e 4 e 1 f 4 4 f f . . 
-        . f f f e 4 4 4 4 f . . . 
-        . 4 4 4 e e e e f f . . . 
-        . e 4 4 e 7 7 7 7 f . . . 
-        . f e e f 6 6 6 6 f f . . 
-        . f f f f f f f f f f . . 
-        . . f f . . . f f f . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . f f f f f f . . . . 
-        . f f f f f f f f f . . . 
-        . f f f f f f c f f f . . 
-        f f f f c f f f c f f f . 
-        f c f f c c f f f c c f f 
-        f c c f f f f e f f f f f 
-        f f f f f f f e e f f f . 
-        f f e e f b f e e f f . . 
-        . f e 4 e 1 f 4 4 f f . . 
-        . f f f e e 4 4 4 f . . . 
-        . . f e 4 4 e e f f . . . 
-        . . f e 4 4 e 7 7 f . . . 
-        . f f f e e f 6 6 f f . . 
-        . f f f f f f f f f f . . 
-        . . f f . . . f f f . . . 
-        `,
-        img`
-        . . . f f f f f . . . . . 
-        . f f f f f f f f f . . . 
-        . f f f f f f c f f f . . 
-        f f f f c f f f c f f . . 
-        f c f f c c f f f c c f f 
-        f c c f f f f e f f f f f 
-        f f f f f f f e e f f f . 
-        f f e e f b f e e f f . . 
-        . f e 4 e 1 f 4 4 f . . . 
-        . f f f e 4 4 4 4 f . . . 
-        . . f e e e e e f f . . . 
-        . . e 4 4 e 7 7 7 f . . . 
-        . . e 4 4 e 7 7 7 f . . . 
-        . . f e e f 6 6 6 f . . . 
-        . . . f f f f f f . . . . 
-        . . . . f f f . . . . . . 
-        `],
+            img`
+                . . . . . . . c c c c c c c . .
+                . . . . . . . c d d d d d d 5 .
+                . . . . . . . c b b c c c c . .
+                . . . . . . c c c c c . . . . .
+                . . . . . c b b b b b c . . . .
+                . . . . c b d d d d b b c . . .
+                . . . c b d d d d d d 2 b c . .
+                . . . c b d d d d d d 2 2 c . .
+                . . . c b d d d d d d 2 2 c . .
+                . . . c b d d d d d d 2 b c . .
+                . . . . c b d d d d b b c . . .
+                . . . . . c b b b b b c . . . .
+                . . . . . . c c c c c . . . . .
+                . . . . . . . c b b c c c c . .
+                . . . . . . . c d d d d d d 5 .
+                . . . . . . . c c c c c c c . .
+            `,
+        ],
         100,
         characterAnimations.rule(Predicate.MovingRight, Predicate.FacingRight)
     )
     characterAnimations.loopFrames(
         playerSprite, [
-        img`
-        . . . . f f f f . . . . . 
-        . . f f f f f f f f . . . 
-        . f f f f f f c f f f . . 
-        f f f f f f c c f f f c . 
-        f f f c f f f f f f f c . 
-        c c c f f f e e f f c c . 
-        f f f f f e e f f c c f . 
-        f f f b f e e f b f f f . 
-        . f 4 1 f 4 4 f 1 4 f . . 
-        . f e 4 4 4 4 4 4 e f . . 
-        . f f f e e e e f f f . . 
-        f e f b 7 7 7 7 b f e f . 
-        e 4 f 7 7 7 7 7 7 f 4 e . 
-        e e f 6 6 6 6 6 6 f e e . 
-        . . . f f f f f f . . . . 
-        . . . f f . . f f . . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . . f f f f . . . . 
-        . . . f f f f f f f f . . 
-        . . f f f f f f c f f f . 
-        f f f f f f f c c f f f c 
-        f f f f c f f f f f f f c 
-        . c c c f f f e e f f c c 
-        . f f f f f e e f f c c f 
-        . f f f b f e e f b f f f 
-        . f f 4 1 f 4 4 f 1 4 f f 
-        . . f e 4 4 4 4 4 e e f e 
-        . f e f b 7 7 7 e 4 4 4 e 
-        . e 4 f 7 7 7 7 e 4 4 e . 
-        . . . f 6 6 6 6 6 e e . . 
-        . . . f f f f f f f . . . 
-        . . . f f f . . . . . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . f f f f . . . . . 
-        . . f f f f f f f f . . . 
-        . f f f c f f f f f f . . 
-        c f f f c c f f f f f f f 
-        c f f f f f f f c f f f f 
-        c c f f e e f f f c c c . 
-        f c c f f e e f f f f f . 
-        f f f b f e e f b f f f . 
-        f f 4 1 f 4 4 f 1 4 f f . 
-        e f e e 4 4 4 4 4 e f . . 
-        e 4 4 4 e 7 7 7 b f e f . 
-        . e 4 4 e 7 7 7 7 f 4 e . 
-        . . e e 6 6 6 6 6 f . . . 
-        . . . f f f f f f f . . . 
-        . . . . . . . f f f . . . 
-        `],
+            img`
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . . . . . . . . . . .
+                . . . . . . c c c c . . . . . .
+                . . . . . c b b b b c . . . . .
+                . . . . c b d d d d b c . . . .
+                . . . c b d d d d d d b c . . .
+                c c c c b d d d d d d b c c c c
+                c d b c b d d d d d d b c b d c
+                c d b c b d d d d d d b c b d c
+                c d c c b b d d d d b b c c d c
+                c d c . c b 2 2 2 2 b c . c d c
+                c d c . . c b 2 2 b c . . c d c
+                c d c . . . c c c c . . . c d c
+                . 5 . . . . . . . . . . . . 5 .
+                . . . . . . . . . . . . . . . .
+            `,
+        ],
         100,
         characterAnimations.rule(Predicate.MovingDown, Predicate.FacingDown)
     )
     characterAnimations.loopFrames(
         playerSprite, [
-        img`
-        . . . . . f f f f f . . . 
-        . . . f f f f f f f f f . 
-        . . f f f c f f f f f f . 
-        . . f f c f f f c f f f f 
-        f f c c f f f c c f f c f 
-        f f f f f e f f f f c c f 
-        . f f f e e f f f f f f f 
-        . . f f e e f b f e e f f 
-        . . . f 4 4 f 1 e 4 e f . 
-        . . . f 4 4 4 4 e f f f . 
-        . . . f f e e e e e f . . 
-        . . . f 7 7 7 e 4 4 e . . 
-        . . . f 7 7 7 e 4 4 e . . 
-        . . . f 6 6 6 f e e f . . 
-        . . . . f f f f f f . . . 
-        . . . . . . f f f . . . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . f f f f f f . . . 
-        . . . f f f f f f f f f . 
-        . . f f f c f f f f f f . 
-        . f f f c f f f c f f f f 
-        f f c c f f f c c f f c f 
-        f f f f f e f f f f c c f 
-        . f f f e e f f f f f f f 
-        . . f f e e f b f e e f f 
-        . . f f 4 4 f 1 e 4 e f . 
-        . . . f 4 4 4 e e f f f . 
-        . . . f f e e 4 4 e f . . 
-        . . . f 7 7 e 4 4 e f . . 
-        . . f f 6 6 f e e f f f . 
-        . . f f f f f f f f f f . 
-        . . . f f f . . . f f . . 
-        `,
-        img`
-        . . . . . . . . . . . . . 
-        . . . . f f f f f f . . . 
-        . . . f f f f f f f f f . 
-        . . f f f c f f f f f f . 
-        . f f f c f f f c f f f f 
-        f f c c f f f c c f f c f 
-        f f f f f e f f f f c c f 
-        . f f f e e f f f f f f f 
-        . f f f e e f b f e e f f 
-        . . f f 4 4 f 1 e 4 e f f 
-        . . . f 4 4 4 4 e f f f . 
-        . . . f f e e e e 4 4 4 . 
-        . . . f 7 7 7 7 e 4 4 e . 
-        . . f f 6 6 6 6 f e e f . 
-        . . f f f f f f f f f f . 
-        . . . f f f . . . f f . . 
-        `],
+            img`
+                . . c c c c c c c . . . . . . .
+                . 5 d d d d d d c . . . . . . .
+                . . c c c c b b c . . . . . . .
+                . . . . . c c c c c . . . . . .
+                . . . . c b b b b b c . . . . .
+                . . . c b b d d d d b c . . . .
+                . . c b 2 d d d d d d b c . . .
+                . . c 2 2 d d d d d d b c . . .
+                . . c 2 2 d d d d d d b c . . .
+                . . c b 2 d d d d d d b c . . .
+                . . . c b b d d d d b c . . . .
+                . . . . c b b b b b c . . . . .
+                . . . . . c c c c c . . . . . .
+                . . c c c c b b c . . . . . . .
+                . 5 d d d d d d c . . . . . . .
+                . . c c c c c c c . . . . . . .
+            `,
+        ],
         100,
         characterAnimations.rule(Predicate.MovingLeft, Predicate.FacingLeft)
     )
 }
 function createPlayer() {
     playerSprite = sprites.create(img`
-        . . . . f f f f . . . . . 
-        . . f f f f f f f f . . . 
-        . f f f f f f c f f f . . 
-        f f f f f f c c f f f c . 
-        f f f c f f f f f f f c . 
-        c c c f f f e e f f c c . 
-        f f f f f e e f f c c f . 
-        f f f b f e e f b f f f . 
-        . f 4 1 f 4 4 f 1 4 f . . 
-        . f e 4 4 4 4 4 4 e f . . 
-        . f f f e e e e f f f . . 
-        f e f b 7 7 7 7 b f e f . 
-        e 4 f 7 7 7 7 7 7 f 4 e . 
-        e e f 6 6 6 6 6 6 f e e . 
-        . . . f f f f f f . . . . 
-        . . . f f . . f f . . . . 
-        `, SpriteKind.Player)
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . c c c c . . . . . .
+        . . . . . c b b b b c . . . . .
+        . . . . c b d d d d b c . . . .
+        . . . c b d d d d d d b c . . .
+        c c c c b d d d d d d b c c c c
+        c d b c b d d d d d d b c b d c
+        c d b c b d d d d d d b c b d c
+        c d c c b b d d d d b b c c d c
+        c d c . c b 2 2 2 2 b c . c d c
+        c d c . . c b 2 2 b c . . c d c
+        c d c . . . c c c c . . . c d c
+        . 5 . . . . . . . . . . . . 5 .
+        . . . . . . . . . . . . . . . .
+    `, SpriteKind.Player)
     controller.moveSprite(playerSprite)
     playerSprite.setFlag(SpriteFlag.StayInScreen, true)
     playerSprite.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -472,6 +333,10 @@ function generateTrain() {
     createTrainCar(1)
     createTrainCar(2)
     linkTrainCars()
+    moveLocomotive()
+}
+function moveLocomotive(){
+    currentTrainList[0].vx = 5
 }
 function linkTrainCars() {
     let leadingCar: Sprite = null
@@ -527,23 +392,23 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     tiles.setTileAt(indicatorSprite.tilemapLocation(), railSprite.image)
     tiles.setWallAt(indicatorSprite.tilemapLocation(), false)
 })
-controller.player2.up.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.player2.right.onEvent(ControllerButtonEvent.Pressed, function () {
     currentRailIndex += 1
     currentRailIndex = currentRailIndex % railTypeList[currentRailTypeIndex].length
     setRailSpriteImage()
 })
-controller.player2.down.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.player2.left.onEvent(ControllerButtonEvent.Pressed, function () {
     currentRailIndex -= 1
     if (currentRailIndex < 0)
         currentRailIndex += railTypeList[currentRailTypeIndex].length
     setRailSpriteImage()
 })
-controller.player2.right.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.player2.up.onEvent(ControllerButtonEvent.Pressed, function () {
     currentRailTypeIndex += 1
     currentRailTypeIndex = currentRailTypeIndex % railTypeList.length
     setRailSpriteImage()
 })
-controller.player2.left.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.player2.down.onEvent(ControllerButtonEvent.Pressed, function () {
     currentRailTypeIndex -= 1
     if (currentRailTypeIndex < 0)
         currentRailTypeIndex += railTypeList.length
@@ -600,13 +465,13 @@ game.onUpdate(function () {
         let rowOffset: number = 0
         let colOffset: number = 0
         if (characterAnimations.matchesRule(playerSprite, characterAnimations.rule(Predicate.FacingUp))) {
-            rowOffset = -1
+            rowOffset = -2
         } else if (characterAnimations.matchesRule(playerSprite, characterAnimations.rule(Predicate.FacingRight))) {
-            colOffset = 1
+            colOffset = 2
         } else if (characterAnimations.matchesRule(playerSprite, characterAnimations.rule(Predicate.FacingDown))) {
-            rowOffset = 1
+            rowOffset = 2
         } else {
-            colOffset = -1
+            colOffset = -2
         }
         tiles.placeOnTile(sprite, tiles.getTileLocation(playerSprite.tilemapLocation().column + colOffset, playerSprite.tilemapLocation().row + rowOffset))
         validTileCheck()
